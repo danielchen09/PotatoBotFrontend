@@ -33,9 +33,11 @@ function search(query, setSearchResults) {
             })).then(async r => {
                 let response = await r.json()
                 console.log(response)
-                let res = response.items?.map(item => {
+                let res = response.items?.filter(item => {
+                    return typeof item.id === 'string' || typeof item.id.videoId === 'string'
+                }).map(item => {
                     return {
-                        id: item.id.videoId,
+                        id: item.id.videoId ?? item.id,
                         author: item.snippet.channelTitle,
                         title: item.snippet.title,
                         thumbnail: item.snippet.thumbnails.default.url
@@ -55,9 +57,12 @@ function search(query, setSearchResults) {
                 key: process.env.REACT_APP_GOOGLE_API_KEY
             })).then(async r => {
                 let response = await r.json()
-                let res = response.items?.map(item => {
+                let res = response.items?.filter(item => {
+                    return typeof item.id === 'string' || typeof item.id.videoId === 'string'
+                }).map(item => {
+                    console.log(response)
                     return {
-                        id: item.id.videoId,
+                        id: item.id.videoId ?? item.id,
                         author: item.snippet.channelTitle,
                         title: item.snippet.title,
                         thumbnail: item.snippet.thumbnails.default.url
@@ -73,9 +78,11 @@ function search(query, setSearchResults) {
             key: process.env.REACT_APP_GOOGLE_API_KEY
         })).then(async r => {
             let response = await r.json()
-            let res = response.items?.map(item => {
+            let res = response.items?.filter(item => {
+                return typeof item.id === 'string' || typeof item.id.videoId === 'string'
+            }).map(item => {
                 return {
-                    id: item.id.videoId,
+                    id: item.id.videoId ?? item.id,
                     author: item.snippet.channelTitle,
                     title: item.snippet.title,
                     thumbnail: item.snippet.thumbnails.default.url

@@ -23,6 +23,7 @@ export default function SearchResult({id, videoId, thumbnail, title, author, que
                 author: author,
                 thumbnail: thumbnail
             };
+            console.log(newSong);
             setQueue([...queue, newSong]);
             post_backend('addsong', {
                 guildId: localStorage.getItem('guildId'),
