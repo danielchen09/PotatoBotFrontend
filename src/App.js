@@ -30,12 +30,11 @@ function updateQueue(setQueue) {
 }
 
 
-function App(props) {
+function App() {
     const [searchResults, setSearchResults] = useState([]);
     const [queue, setQueue] = useState([]);
     const guildId = new URLSearchParams(window.location.search).get('guildId');
     localStorage.setItem('guildId', guildId);
-    // updateQueue(setQueue);
     useEffect(() => {
         const socket = socketClient(process.env.REACT_APP_BACKEND_URI);
         socket.on('error', function (err) {
