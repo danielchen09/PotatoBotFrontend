@@ -36,7 +36,7 @@ function App() {
     const guildId = new URLSearchParams(window.location.search).get('guildId');
     localStorage.setItem('guildId', guildId);
     useEffect(() => {
-        const socket = soketClient(process.env.REACT_APP_BACKEND_URI);
+        const socket = socketClient(process.env.REACT_APP_BACKEND_URI);
         socket.on('error', function (err) {
             console.log(err);
         });
